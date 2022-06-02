@@ -3,27 +3,32 @@
         <header>
             <button (click)="gotoDashboard()">Back to Dashboard</button>
         </header>
-        <app-filter [ramList]="ramList" [hddList]="hddList" [locationList]="locationList"
-            (ramEvent)="ramEventHander($event)" (hddEvent)="hddEventHander($event)"
+        <app-filter [ramList]="ramList" [ramTypeList]="ramTypeList" [hddList]="hddList" [locationList]="locationList"
+            [driveList]="driveList" (ramEvent)="ramEventHander($event)" (ramTypeEvent)="ramTypeEventHander($event)"
+            (hddEvent)="hddEventHander($event)" (driveEvent)="driveEventHander($event)"
             (locationEvent)="locationEventHander($event)">
         </app-filter>
-        <table>
-            <tr>
-                <th>Model</th>
-                <th>RAM</th>
-                <th>RAM Type</th>
-                <th>HDD</th>
-                <th>Location</th>
-                <th>Price</th>
-            </tr>
-            <tr *ngFor="let value of data">
-                <td>{{value.Model}}</td>
-                <td>{{value.RAM.slice(0, -4)}}</td>
-                <td>{{value.RAM.slice(-4, value.RAM.length)}}</td>
-                <td>{{value.HDD}}</td>
-                <td>{{value.Location.slice(0, -6)}}</td>
-                <td>{{value.Price}}</td>
-            </tr>
-        </table>
+        <div class="tableContent">
+            <table>
+                <tr>
+                    <th>Model</th>
+                    <th>RAM</th>
+                    <th>RAM Type</th>
+                    <th>HDD</th>
+                    <th>Drive</th>
+                    <th>Location</th>
+                    <th>Price</th>
+                </tr>
+                <tr *ngFor="let value of dataSource">
+                    <td>{{value.Model}}</td>
+                    <td>{{value.RAM}}</td>
+                    <td>{{value.RamType}}</td>
+                    <td>{{value.HDD}}</td>
+                    <td>{{value.Drive}}</td>
+                    <td>{{value.Location}}</td>
+                    <td>{{value.Price}}</td>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>

@@ -1,14 +1,22 @@
 .content {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     margin: 20px 0;
     padding: 30px;
-    background-color: rgb(255, 240, 198);
+    background-color: white;
+    border: 1px solid black;
+
 }
 
 .content select {
-    padding: 10px 30px;
-    border: 1px solid rgb(255, 195, 29);
+    appearance: none;
+    padding: 10px 30px 10px 10px;
+    background-image: url('../../../../assets/downward-arrow.png');
+    background-repeat: no-repeat;
+    background-position: calc(100% - 6px) center;
+    background-size: 15px;
+    border: 1px solid black;
     outline: none;
     background-color: white;
 }
