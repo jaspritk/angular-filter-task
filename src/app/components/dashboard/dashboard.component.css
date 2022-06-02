@@ -1,0 +1,27 @@
+.content {
+    /* margin: 20px 0; */
+    padding: 30px;
+    background-color: rgb(255, 247, 225);
+    height: 100vh;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    background-color: rgb(255, 195, 29);
+    /* border-radius: 5px; */
+}
+
+.lesson {
+    padding: 30px 0;
+}
+
+.lesson ol {
+    padding: 20px 0 0 20px;
+}
+
+/* .section1,
+.section2 {
+    background-color: rgb(255, 240, 198);
+} */

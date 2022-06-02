@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="content">
+        <select name="selectedRam" class="selectedRam" (change)="SelectChangeRam($event)" (mouseup)="onRamChange()">
+            <option value="select">Filter by RAM</option>
+            <option value="{{i}}" *ngFor="let i of ramList ">{{i}}</option>
+        </select>
+        <!-- <div *ngFor="let i of ramList">
+            <input type="checkbox" name="ram" value="{{i}}">
+            <label>{{i}}</label><br>
+        </div> -->
+        <!-- <p>selected ram: {{selectedRam}}</p> -->
+        <select name="selectedHdd" class="selectedHdd" (change)="SelectChangeHdd($event)" (mouseup)="onHddChange()">
+            <option value="select">Filter by HDD</option>
+            <option value="{{i}}" *ngFor="let i of hddList ">{{i}}</option>
+        </select>
+        <!-- <p>selected hdd: {{selectedHdd}}</p> -->
+        <select name="selectedLocation" class="selectedLocation" (change)="SelectChangeLocation($event)"
+            (mouseup)="onLocationChange()">
+            <option value="select">Filter by Location</option>
+            <option value="{{i}}" *ngFor="let i of locationList ">{{i}}</option>
+        </select>
+    </div>
+</div>
+
+<!-- <p>selected location: {{selectedLocation}}</p> -->
