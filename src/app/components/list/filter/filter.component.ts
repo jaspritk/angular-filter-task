@@ -31,43 +31,48 @@ export class FilterComponent implements OnInit {
 
   SelectChangeRam(event: any) {
     this.selectedRam = event?.target.value;
+    this.ramEvent.emit(this.selectedRam);
   }
 
   SelectChangeRamType(event: any) {
     this.selectedRamType = event?.target.value;
+    this.ramTypeEvent.emit(this.selectedRamType);
   }
 
   SelectChangeHdd(event: any) {
     this.selectedHdd = event?.target.value;
+    this.hddEvent.emit(this.selectedHdd);
   }
 
   SelectChangeDrive(event: any) {
     this.selectedDrive = event?.target.value;
+    this.driveEvent.emit(this.selectedDrive);
   }
 
   SelectChangeLocation(event: any) {
     this.selectedLocation = event?.target.value;
-  }
-
-  onRamChange() {
-    this.ramEvent.emit(this.selectedRam);
-
-  }
-
-  onRamTypeChange() {
-    this.ramTypeEvent.emit(this.selectedRamType);
-
-  }
-
-  onHddChange() {
-    this.hddEvent.emit(this.selectedHdd);
-  }
-
-  onDriveChange() {
-    this.driveEvent.emit(this.selectedDrive);
-  }
-
-  onLocationChange() {
     this.locationEvent.emit(this.selectedLocation);
   }
+
+  // onRamChange() {
+  //   this.ramEvent.emit(this.selectedRam);
+
+  // }
+
+  // onRamTypeChange() {
+  //   this.ramTypeEvent.emit(this.selectedRamType);
+
+  // }
+
+  // onHddChange() {
+  //   this.hddEvent.emit(this.selectedHdd);
+  // }
+
+  // onDriveChange() {
+  //   this.driveEvent.emit(this.selectedDrive);
+  // }
+
+  // onLocationChange() {
+  //   this.locationEvent.emit(this.selectedLocation);
+  // }
 }

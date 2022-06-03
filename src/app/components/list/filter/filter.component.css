@@ -20,3 +20,17 @@
     outline: none;
     background-color: white;
 }
+
+@media screen and (max-width: 500px) {
+    .content {
+        display: block;
+        padding: 30px 30px 20px 30px;
+
+        /* margin-right: 20px; */
+    }
+
+    .content select {
+        /* width: 155px; */
+        margin: 0 10px 10px 0;
+    }
+}
