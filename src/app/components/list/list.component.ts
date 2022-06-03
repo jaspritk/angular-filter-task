@@ -7,7 +7,7 @@ interface Data {
   RAM: string;
   HDD: string;
   Location: string;
-  Price: string;
+  Price: any;
 }
 
 interface DataSource {
@@ -17,7 +17,7 @@ interface DataSource {
   HDD: string,
   Drive: string,
   Location: string,
-  Price: string
+  Price: any;
 }
 
 @Component({
@@ -37,11 +37,13 @@ export class ListComponent implements OnInit {
   driveList: any = [];
   locationList: any = [];
 
-  ram: any;
-  ramtype: any;
-  hdd: any;
-  drive: any;
-  location: any;
+  priceList: any = [];
+
+  // ram: any;
+  // ramtype: any;
+  // hdd: any;
+  // drive: any;
+  // location: any;
 
   // variables for new dataset
   dataSource: DataSource[] = []
@@ -54,6 +56,14 @@ export class ListComponent implements OnInit {
   locationOnly: any
   price: any
 
+  // For Filter
+  filter: any = []
+  ram: any;
+  ramtype: any;
+  hdd: any;
+  drive: any;
+  location: any;
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {
@@ -63,6 +73,10 @@ export class ListComponent implements OnInit {
     this.valueInHdd()
     this.valueInDrive()
     this.valueInLocation()
+    this.valueInPrice()
+    // this.customFilterPredicate()
+
+
   }
 
   gotoDashboard() {
@@ -78,7 +92,7 @@ export class ListComponent implements OnInit {
       this.driveType = element.HDD.split('B')[1]
       this.locationOnly = element.Location.slice(0, -6)
       this.price = element.Price
-
+      // console.log('this.price>', this.price)
       this.dataSource.push({
         Model: this.model,
         RAM: this.ramOnly,
@@ -93,33 +107,41 @@ export class ListComponent implements OnInit {
 
   valueInRam() {
     this.ramList = [...new Set(this.dataSource.map((item: any) => item.RAM))]
-    this.ramList.sort()
     return this.ramList
   }
 
   valueInRamType() {
     this.ramTypeList = [...new Set(this.dataSource.map((item: any) => item.RamType))]
-    this.ramTypeList.sort()
     return this.ramTypeList
   }
 
   valueInHdd() {
     this.hddList = [...new Set(this.dataSource.map((item: any) => item.HDD))]
-    this.hddList.sort(function (a: any, b: any) { return a - b });
     return this.hddList
   }
 
   valueInDrive() {
     this.driveList = [...new Set(this.dataSource.map((item: any) => item.Drive))]
-    this.driveList.sort();
     return this.driveList
   }
 
   valueInLocation() {
     this.locationList = [...new Set(this.dataSource.map((item: any) => item.Location))]
-    this.locationList.sort();
     return this.locationList
   }
+
+  valueInPrice() {
+
+    // this.getMin(this.price, this.price.length)
+
+    this.priceList = [...new Set(this.dataSource.map((item: any) => item.Price))]
+    this.priceList.sort(function (a: any, b: any) { return a - b })
+    // console.log("this.priceList", this.priceList)
+    return this.priceList
+  }
+
+
+
 
   ramEventHandler($event: any) {
     this.ram = $event;
@@ -175,4 +197,5 @@ export class ListComponent implements OnInit {
     this.dataSource = this.copyData
     return this.dataSource
   }
+
 }
