@@ -29,21 +29,19 @@ export class ListComponent implements OnInit {
 
   data: Data[] = datajson;
 
-  global: any;
-
   ramList: any = [];
   ramTypeList: any = [];
   hddList: any = [];
   driveList: any = [];
   locationList: any = [];
 
-  priceList: any = [];
-
-  // ram: any;
-  // ramtype: any;
-  // hdd: any;
-  // drive: any;
-  // location: any;
+  //  to store selected values
+  ram: any;
+  ramtype: any;
+  hdd: any;
+  drive: any;
+  location: any;
+  priceRange: any;
 
   // variables for new dataset
   dataSource: DataSource[] = []
@@ -56,14 +54,6 @@ export class ListComponent implements OnInit {
   locationOnly: any
   price: any
 
-  // For Filter
-  filter: any = []
-  ram: any;
-  ramtype: any;
-  hdd: any;
-  drive: any;
-  location: any;
-
   constructor(private router: Router) { }
 
   ngOnInit(): void {
@@ -73,10 +63,6 @@ export class ListComponent implements OnInit {
     this.valueInHdd()
     this.valueInDrive()
     this.valueInLocation()
-    this.valueInPrice()
-    // this.customFilterPredicate()
-
-
   }
 
   gotoDashboard() {
@@ -92,7 +78,7 @@ export class ListComponent implements OnInit {
       this.driveType = element.HDD.split('B')[1]
       this.locationOnly = element.Location.slice(0, -6)
       this.price = element.Price
-      // console.log('this.price>', this.price)
+
       this.dataSource.push({
         Model: this.model,
         RAM: this.ramOnly,
@@ -129,19 +115,6 @@ export class ListComponent implements OnInit {
     this.locationList = [...new Set(this.dataSource.map((item: any) => item.Location))]
     return this.locationList
   }
-
-  valueInPrice() {
-
-    // this.getMin(this.price, this.price.length)
-
-    this.priceList = [...new Set(this.dataSource.map((item: any) => item.Price))]
-    this.priceList.sort(function (a: any, b: any) { return a - b })
-    // console.log("this.priceList", this.priceList)
-    return this.priceList
-  }
-
-
-
 
   ramEventHandler($event: any) {
     this.ram = $event;
@@ -198,4 +171,18 @@ export class ListComponent implements OnInit {
     return this.dataSource
   }
 
+  priceEventHandler($event: any) {
+    this.priceRange = $event
+    const x = this.copyData.filter((s: any) => s.Price <= this.priceRange);
+    this.dataSource = x;
+    return x
+  }
+
+  // eventHandler(column: any, outputEvent: any) {
+  //   const x = this.copyData.filter((s: any) => s.column == outputEvent);
+  //   this.dataSource = x;
+  //   console.log("datasource", this.dataSource)
+  //   return x;
+  // }
 }
+

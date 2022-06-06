@@ -28,9 +28,19 @@
             <option value="{{i}}" *ngFor="let i of locationList ">{{i}}</option>
         </select>
 
-        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+        <div class="priceRange">
+            <p>Price Ranges from $35 to ${{selectedRange}}</p>
+            <div class="priceFilter">
+                <p>$35</p>
+                <input type="range" min="35" max="5000" class="slider" (change)="SelectPriceRange($event)"
+                    [value]="selectedRange">
+                <p>$5000</p>
+            </div>
+        </div>
 
     </div>
+
+
 </div>
 
 <!-- <p>selected location: {{selectedLocation}}</p> -->

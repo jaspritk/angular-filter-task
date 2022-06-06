@@ -18,24 +18,26 @@ export class FilterComponent implements OnInit {
   @Output() hddEvent: EventEmitter<string> = new EventEmitter();
   @Output() driveEvent: EventEmitter<string> = new EventEmitter();
   @Output() locationEvent: EventEmitter<string> = new EventEmitter();
+  @Output() priceEvent: EventEmitter<string> = new EventEmitter();
 
   selectedRam: string = '';
   selectedRamType: string = ''
   selectedHdd: string = '';
   selectedDrive: string = '';
   selectedLocation: string = '';
+  selectedRange: any = '';
 
   constructor() { }
 
   ngOnInit(): void { }
 
   SelectChangeRam(event: any) {
-    this.selectedRam = event?.target.value;
+    this.selectedRam = event.target.value;
     this.ramEvent.emit(this.selectedRam);
   }
 
   SelectChangeRamType(event: any) {
-    this.selectedRamType = event?.target.value;
+    this.selectedRamType = event.target.value;
     this.ramTypeEvent.emit(this.selectedRamType);
   }
 
@@ -45,14 +47,20 @@ export class FilterComponent implements OnInit {
   }
 
   SelectChangeDrive(event: any) {
-    this.selectedDrive = event?.target.value;
+    this.selectedDrive = event.target.value;
     this.driveEvent.emit(this.selectedDrive);
   }
 
   SelectChangeLocation(event: any) {
-    this.selectedLocation = event?.target.value;
+    this.selectedLocation = event.target.value;
     this.locationEvent.emit(this.selectedLocation);
   }
+
+  SelectPriceRange(event: any) {
+    this.selectedRange = event.target.value
+    this.priceEvent.emit(this.selectedRange);
+  }
+
 
   // onRamChange() {
   //   this.ramEvent.emit(this.selectedRam);
@@ -74,5 +82,25 @@ export class FilterComponent implements OnInit {
 
   // onLocationChange() {
   //   this.locationEvent.emit(this.selectedLocation);
+  // }
+
+  // onChange(event: any) {
+
+  //   this.selectedRam = event?.target.value;
+  //   this.selectedRamType = event?.target.value;
+  //   this.selectedHdd = event?.target.value;
+  //   this.selectedDrive = event?.target.value;
+  //   this.selectedLocation = event?.target.value;
+
+  //   console.log('this.selectedRam', this.selectedRam)
+  //   this.allEvents.push({
+  //     a: this.ramEvent.emit(this.selectedRam),
+  //     b: this.ramTypeEvent.emit(this.selectedRamType),
+  //     c: this.hddEvent.emit(this.selectedHdd),
+  //     d: this.driveEvent.emit(this.selectedDrive),
+  //     e: this.locationEvent.emit(this.selectedLocation)
+  //   })
+
+  //   console.log('this.allEvents', this.locationEvent)
   // }
 }

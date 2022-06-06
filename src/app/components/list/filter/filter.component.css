@@ -21,8 +21,24 @@
     background-color: white;
 }
 
+.priceRange {
+    width: 100%;
+}
+
+.priceRange>p {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 16px;
+}
+
+.priceFilter {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 10px;
+}
+
 .slider {
-    margin-top: 20px;
     -webkit-appearance: none;
     width: 100%;
     height: 25px;
