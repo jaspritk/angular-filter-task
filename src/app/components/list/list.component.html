@@ -4,11 +4,8 @@
             <button (click)="gotoDashboard()">Back to Dashboard</button>
         </header>
         <app-filter [ramList]="ramList" [ramTypeList]="ramTypeList" [hddList]="hddList" [locationList]="locationList"
-            [driveList]="driveList" (ramEvent)="ramEventHandler($event)" (ramTypeEvent)="ramTypeEventHandler($event)"
-            (hddEvent)="hddEventHandler($event)" (driveEvent)="driveEventHandler($event)"
-            (locationEvent)="locationEventHandler($event)" (priceEvent)="priceEventHandler($event)">
+            [driveList]="driveList" (emitEventObject)="applyAllFilters($event)">
 
-            <!--  -->
         </app-filter>
         <div class="tableContent">
             <table>

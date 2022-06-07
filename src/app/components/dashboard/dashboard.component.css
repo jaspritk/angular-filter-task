@@ -1,8 +1,6 @@
 .content {
-    /* margin: 20px 0; */
     padding: 30px;
     background-color: white;
-    /* height: 100vh; */
 }
 
 button {
@@ -11,18 +9,13 @@ button {
     outline: none;
     background-color: black;
     color: white;
-    /* border-radius: 5px; */
 }
 
 .lesson {
-    padding: 30px 0;
+    margin-top: 30px;
 }
 
-.lesson ol {
-    padding: 20px 0 0 20px;
+.filter {
+    margin-top: 10px;
+    overflow: auto;
 }
-
-/* .section1,
-.section2 {
-    background-color: rgb(255, 240, 198);
-} */

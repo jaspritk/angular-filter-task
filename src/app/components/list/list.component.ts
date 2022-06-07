@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import datajson from '../../../assets/data.json';
 
@@ -28,7 +28,6 @@ interface DataSource {
 export class ListComponent implements OnInit {
 
   data: Data[] = datajson;
-
   ramList: any = [];
   ramTypeList: any = [];
   hddList: any = [];
@@ -44,8 +43,8 @@ export class ListComponent implements OnInit {
   priceRange: any;
 
   // variables for new dataset
-  dataSource: DataSource[] = []
-  copyData: DataSource[] = this.dataSource;
+  dataSource: any = [];
+  copyData: any = this.dataSource;
   model: any
   ramOnly: any
   ramType: any
@@ -53,6 +52,8 @@ export class ListComponent implements OnInit {
   driveType: any
   locationOnly: any
   price: any
+
+  filteredValues = { ram: '', ramType: '', hdd: '', drive: '', location: '', priceRange: '' };
 
   constructor(private router: Router) { }
 
@@ -116,73 +117,16 @@ export class ListComponent implements OnInit {
     return this.locationList
   }
 
-  ramEventHandler($event: any) {
-    this.ram = $event;
-    if ($event !== "select") {
-      const x = this.copyData.filter((s: any) => s.RAM == this.ram);
-      this.dataSource = x;
-      return x;
-    }
-    this.dataSource = this.copyData
-    return this.dataSource
+  applyAllFilters(data: any) {
+    this.filteredValues = data;
+    this.dataSource = this.copyData.filter((s: any) =>
+      (this.filteredValues.ram ? s.RAM == this.filteredValues.ram : true) &&
+      (this.filteredValues.ramType ? s.RamType == this.filteredValues.ramType : true) &&
+      (this.filteredValues.hdd ? s.HDD == this.filteredValues.hdd : true) &&
+      (this.filteredValues.drive ? s.Drive == this.filteredValues.drive : true) &&
+      (this.filteredValues.location ? s.Location == this.filteredValues.location : true) &&
+      (this.filteredValues.priceRange ? s.Price <= this.filteredValues.priceRange : true)
+    );
   }
 
-  ramTypeEventHandler($event: any) {
-    this.ramtype = $event;
-    if ($event !== "select") {
-      const x = this.copyData.filter((s: any) => s.RamType == this.ramtype);
-      this.dataSource = x;
-      return x;
-    }
-    this.dataSource = this.copyData
-    return this.dataSource
-  }
-
-  hddEventHandler($event: any) {
-    this.hdd = $event;
-    if ($event !== "select") {
-      const x = this.copyData.filter((s: any) => s.HDD == this.hdd);
-      this.dataSource = x;
-      return x;
-    }
-    this.dataSource = this.copyData
-    return this.dataSource
-  }
-
-  driveEventHandler($event: any) {
-    this.drive = $event;
-    if ($event !== "select") {
-      const x = this.copyData.filter((s: any) => s.Drive == this.drive);
-      this.dataSource = x;
-      return x;
-    }
-    this.dataSource = this.copyData
-    return this.dataSource
-  }
-
-  locationEventHandler($event: any) {
-    this.location = $event
-    if ($event !== "select") {
-      const x = this.copyData.filter((s: any) => s.Location == this.location);
-      this.dataSource = x;
-      return x
-    }
-    this.dataSource = this.copyData
-    return this.dataSource
-  }
-
-  priceEventHandler($event: any) {
-    this.priceRange = $event
-    const x = this.copyData.filter((s: any) => s.Price <= this.priceRange);
-    this.dataSource = x;
-    return x
-  }
-
-  // eventHandler(column: any, outputEvent: any) {
-  //   const x = this.copyData.filter((s: any) => s.column == outputEvent);
-  //   this.dataSource = x;
-  //   console.log("datasource", this.dataSource)
-  //   return x;
-  // }
 }
-

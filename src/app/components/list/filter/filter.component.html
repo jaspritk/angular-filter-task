@@ -1,46 +1,42 @@
 <div class="container">
     <div class="content">
 
-        <select name="selectedRam" class="selectedRam" (change)="SelectChangeRam($event)">
-            <option value="select">Filter by RAM</option>
-            <option value="{{i}}" *ngFor="let i of ramList ">{{i}}</option>
-        </select>
-
-        <select name="selectedRamType" class="selectedRamType" (change)="SelectChangeRamType($event)">
-            <option value="select">Filter by Ram Type</option>
-            <option value="{{i}}" *ngFor="let i of ramTypeList ">{{i}}</option>
-        </select>
-
-
-        <select name="selectedHdd" class="selectedHdd" (change)="SelectChangeHdd($event)">
-            <option value="select">Filter by HDD</option>
-            <option value="{{i}}" *ngFor="let i of hddList ">{{i}}</option>
-        </select>
-        <!-- <p>selected hdd: {{selectedHdd}}</p> -->
-
-        <select name="selectedHdd" class="selectedHdd" (change)="SelectChangeDrive($event)">
-            <option value="select">Filter by Drive</option>
-            <option value="{{i}}" *ngFor="let i of driveList ">{{i}}</option>
-        </select>
-
-        <select name="selectedLocation" class="selectedLocation" (change)="SelectChangeLocation($event)">
-            <option value="select">Filter by Location</option>
-            <option value="{{i}}" *ngFor="let i of locationList ">{{i}}</option>
-        </select>
-
         <div class="priceRange">
-            <p>Price Ranges from $35 to ${{selectedRange}}</p>
+            <p>Price Ranges from $35 to ${{priceEvent}}</p>
             <div class="priceFilter">
                 <p>$35</p>
-                <input type="range" min="35" max="5000" class="slider" (change)="SelectPriceRange($event)"
-                    [value]="selectedRange">
+                <input type="range" min="35" max="5000" class="slider" [(ngModel)]="priceEvent" [value]="selectedRange"
+                    (change)="onChange()">
                 <p>$5000</p>
             </div>
         </div>
 
+        <select name="selectedRam" class="selectedRam" [(ngModel)]="ramEvent" (change)="onChange()">
+            <option value="" selected>Filter by RAM</option>
+            <option *ngFor="let i of ramList" value="{{i}}">{{i}}</option>
+        </select>
+
+        <select name="selectedRamType" class="selectedRamType" [(ngModel)]="ramTypeEvent" (change)="onChange()">
+            <option value="" selected>Filter by Ram Type</option>
+            <option value="{{i}}" *ngFor="let i of ramTypeList ">{{i}}</option>
+        </select>
+
+        <select name="selectedHdd" class="selectedHdd" [(ngModel)]="hddEvent" (change)="onChange()">
+            <option value="" selected>Filter by HDD</option>
+            <option value="{{i}}" *ngFor="let i of hddList ">{{i}}</option>
+        </select>
+
+        <select name="selectedDrive" class="selectedDrive" [(ngModel)]="driveEvent" (change)="onChange()">
+            <option value="" selected>Filter by Drive</option>
+            <option value="{{i}}" *ngFor="let i of driveList ">{{i}}</option>
+        </select>
+
+        <select name="selectedLocation" class="selectedLocation" [(ngModel)]="locationEvent" (change)="onChange()">
+            <option value="" selected>Filter by Location</option>
+            <option value="{{i}}" *ngFor="let i of locationList ">{{i}}</option>
+        </select>
+
+        <button class="clearFilter" (click)="clearFilter()">Clear Filter</button>
+
     </div>
-
-
 </div>
-
-<!-- <p>selected location: {{selectedLocation}}</p> -->
