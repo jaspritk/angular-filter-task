@@ -1,6 +1,7 @@
 table {
     border-collapse: collapse;
     width: 100%;
+
 }
 
 td,
@@ -20,14 +21,32 @@ header button {
     outline: none;
     background-color: black;
     color: white;
+    cursor: pointer;
 }
 
 .tableContent {
     overflow: auto;
+    height: calc(100vh - 320px);
+}
+
+.arrow {
+    display: none;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 991px) {
     table {
         width: 991px;
+    }
+
+    .tableContent {
+        height: auto;
+    }
+
+    .arrow {
+        display: block;
     }
 }

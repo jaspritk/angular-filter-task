@@ -70,6 +70,11 @@ export class ListComponent implements OnInit {
     this.router.navigate(['/dashboard'])
   }
 
+  gotoTop() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+
   newData() {
     this.data.forEach(element => {
       this.model = element.Model
